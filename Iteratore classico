@@ -20,7 +20,7 @@ VERSIONE "PULITA"
       }
       @override
       public void remove() {
-         throw new NoImplementetionException("Il metodo remove non è implementato");
+         throw new UnsupportedOperationException()("Il metodo remove non è implementato");
       }
     };
   }
@@ -50,6 +50,10 @@ public Iterator<Integer> iterator() {
       public boolean hasNext() {
         if (!hasNext) hasNext = nextIndex > -1 && nextIndex != tail;
         return hasNext;
+      }
+      @override
+      public void remove() {
+         throw new UnsupportedOperationException()("Il metodo remove non è implementato");
       }
       
       
