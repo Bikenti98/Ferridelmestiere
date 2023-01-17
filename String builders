@@ -1,0 +1,27 @@
+@Override
+  public String toString() {
+    assert repOK();
+
+    StringBuilder sb = new StringBuilder("IntQueue : [");
+    if (!isEmpty()) {
+      int i;
+      for (i = 0; i < size() - 1; i++)
+        sb.append(elements[(head + i) % elements.length]).append(", ");
+      sb.append(elements[(head + i) % elements.length]);
+    }
+    sb.append(']');
+    return sb.toString();
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (!(obj instanceof IntQueue)) return false;
+    IntQueue other = (IntQueue) obj;
+
+    if (size() != other.size() || elements.length != other.elements.length) return false;
+    for (int i = 0; i < size(); i++)
+      if (elements[(head + i) % elements.length]
+          != other.elements[(other.head + i) % elements.length]) return false;
+
+    return true;
+  }
