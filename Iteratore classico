@@ -18,6 +18,10 @@ VERSIONE "PULITA"
         if (!hasNext()) throw new NoSuchElementException();
         return els.get(idx++);
       }
+      @override
+      public void remove() {
+         throw new NoImplementetionException("Il metodo remove non è implementato");
+      }
     };
   }
 
