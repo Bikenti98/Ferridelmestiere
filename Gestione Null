@@ -1,0 +1,9 @@
+Objects.requireNonNull(espressione, "Messaggio");
+
+
+variabile = Objects.requireNonNull(espressione, "Messaggio");
+
+
+Objects.requireNonNull(espressione, "Messaggio").metodo();             <==>             if (espressione == null)
+                                                                                        throw new NullPointerException("Messaggio");
+                                                                                        espressione.metodo();
