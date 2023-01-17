@@ -1,0 +1,49 @@
+public class IntSet implements Iterable<Integer> {...
+
+...
+
+VERSIONE "PULITA"
+[...]
+ public Iterator<Integer> iterator() {
+    return new Iterator<Integer>() {
+      private int idx = 0;
+
+      @Override
+      public boolean hasNext() {
+        return idx < els.size();
+      }
+
+      @Override
+      public Integer next() {
+        if (!hasNext()) throw new NoSuchElementException();
+        return els.get(idx++);
+      }
+    };
+  }
+
+
+VERSIONE "COONTROLLO MODIFICHE"
+[...]
+public Iterator<Integer> iterator() {
+    changed = false;
+
+    return new Iterator<Integer>() {
+      int nextIndex = head;
+      boolean hasNext = isFull();
+
+      @Override
+      public Integer next() {
+        if (changed) throw new ConcurrentModificationException();
+        if (!hasNext()) throw new NoSuchElementException();
+
+        int res = elements[nextIndex];
+        nextIndex = (nextIndex + 1) % elements.length;
+        hasNext = false;
+        return res;
+      }
+
+      @Override
+      public boolean hasNext() {
+        if (!hasNext) hasNext = nextIndex > -1 && nextIndex != tail;
+        return hasNext;
+      }
