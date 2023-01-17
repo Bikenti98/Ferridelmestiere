@@ -47,3 +47,5 @@ public Iterator<Integer> iterator() {
         if (!hasNext) hasNext = nextIndex > -1 && nextIndex != tail;
         return hasNext;
       }
+      
+      
