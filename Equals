@@ -1,0 +1,6 @@
+@Override
+  public boolean equals(Object obj) {
+    if (!(obj instanceof IntQueue)) return false;
+    IntQueue other = (IntQueue) obj;
+    [...]
+    }
