@@ -1,0 +1,13 @@
+ES RECORD
+
+public record Term(int coeff, int degree) {
+    //Costruttore
+    public Term {
+      if (degree < 0) throw new NegativeExponentException("Il grado dev'essere positivo");
+    }
+    //metodi
+    @Override
+    public String toString() {
+      return coeff + "x^" + degree;
+    }
+  }
