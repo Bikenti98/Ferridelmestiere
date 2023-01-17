@@ -4,6 +4,7 @@ public class Exception extends RuntimeException {
     super();
   }
 
+
   public Exception(String message) {
     super(message);
   }
