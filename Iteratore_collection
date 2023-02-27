@@ -1,0 +1,1 @@
+Iterator itr = Collections.unmodifiableCollection(locali).iterator();
