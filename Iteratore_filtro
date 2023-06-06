@@ -1,0 +1,54 @@
+import java.util.function.Predicate;
+
+public class pred implements Predicate<Integer>{
+    public final int limite;
+
+    public pred(int lim){
+        limite = lim;
+    }
+    
+    @Override
+    public boolean test(Integer t) {
+        return t > limite;
+    }
+    
+}
+
+
+
+///////////////////////////////////////////
+
+
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.function.Predicate;
+
+public class FilterIterator<T> implements Iterator<T> {
+    
+    private Iterator<T> iter_filtro;
+    private Predicate<T> filtro;
+    private boolean hasNext = false;
+    private T next = null;
+
+    public FilterIterator(final Iterator<T> source, Predicate<T> filter) {
+        iter_filtro = source;
+        filtro = filter;
+    }
+    
+    @Override
+    public boolean hasNext() {
+      while(!hasNext && iter_filtro.hasNext()){
+        next = iter_filtro.next();
+        hasNext = filtro.test(next);
+      }
+      return hasNext;
+    }
+    
+    @Override
+    public T next() {
+      if (!hasNext()) throw new NoSuchElementException();
+      hasNext = false;
+      return next;
+    }
+
+}
